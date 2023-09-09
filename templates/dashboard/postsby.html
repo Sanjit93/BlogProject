@@ -1,0 +1,42 @@
+{% extends 'BlogApp/base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include 'dashboard/sidebar.html' %}
+    <div class="col-md-9">
+        <h3 style="color: darkblue;">All Posts</h3>
+        <a href="{% url 'addposts' %}" class="btn btn-dark text-light float-right mb-2">Add New</a>
+        <table class="table table-hover" style="background-color:whitesmoke;">
+            <thead>
+              <tr style="color: darkmagenta;">
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Author</th>
+                <th>status</th>
+                <th>featured</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for cat in post %}
+              <tr style="color:black;">
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{cat.title}}</td>
+                <td>{{cat.category}}</td>
+                <td>{{cat.author}}</td>
+                <td>{{cat.status}}</td>
+                <td>{{cat.is_featured}}</td>
+                <td>
+                    <a href="{% url 'editposts' cat.id %}"><i class="fa fa-edit text-success"></i></a>
+                    &nbsp;
+                    <a href="{% url 'deleteposts' cat.id %}"><i class="fa fa-trash text-danger"></i></a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+            
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'BlogApp/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="row">
+    {% include 'dashboard/sidebar.html' %}
+    <div class="col-md-9">
+        <h3 style="color: darkblue;">Add Blog Post</h3>
+        <form action="{% url 'addposts'%}" method="POST" enctype="multipart/form-data" style="width: 360px;">
+            {% csrf_token %}
+            {{form | crispy }}
+            <button type="submit" class="btn btn-warning">submit</button>
+        </form>
+        <br>
+    </div>
+</div>
+{% endblock %}

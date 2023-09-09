@@ -1,0 +1,13 @@
+{% extends 'BlogApp/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<h3 class="text-center" style="color:royalblue;">login</h3>
+
+<form action="{% url 'login' %}" method="post" style="width: 300px; margin: auto;">
+    {% csrf_token %}
+    {{form | crispy }}
+    <Div style="text-align: center;"><button type="submit" class="btn btn-warning">login</button></Div>
+</form>
+
+{% endblock %}
